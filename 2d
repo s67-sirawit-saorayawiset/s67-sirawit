@@ -1,0 +1,55 @@
+void setup() {
+    size(500, 500);
+    strokeWeight(12);
+    background(255);
+
+    // 2D array of sample values
+    int[][] grid = {{1,2,3}, {4,5,6}, {7,8,9}};
+
+    int rows = grid.length;
+    int cols = grid[0].length;
+
+    int w = width / cols;
+    int h = height / rows;
+
+    update(grid, -1);
+    int i = 0;
+    while (i < rows) {
+
+        int j = 0;
+        while (j < cols) {
+
+            draw_lines(10 + j * w, 10 + i * h, grid[i][j]);
+            println(i, j, grid[i][j]);
+            j++;
+        }
+
+        i++;
+    }
+}
+
+
+void update(int[][] a, int d) { // array is passed by reference?
+    int i = 0;
+    while (i < a.length) {
+
+        int j = 0;
+        while (j < a[0].length) {
+
+            a[i][j] = a[i][j] + d;
+            j++;
+        }
+
+        i++;
+    }
+}
+
+
+void draw_lines(int x, int y, int n) {
+    int i = 0;
+    while (i < n) {
+
+        line(x + i * 20, y, x + i * 20, y + 40);
+        i++;
+    }
+}
